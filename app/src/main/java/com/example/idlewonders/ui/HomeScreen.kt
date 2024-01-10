@@ -63,12 +63,14 @@ fun HomeScreen(viewModel: PlayerViewModel) {
                         Text(text = "🪄", modifier = Modifier.padding(start = 8.dp))
                     }
                 }
-                Box(contentAlignment = Alignment.Center) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                ) {
                     LinearProgressIndicator(
                         progress = playerMoney.toFloat()/100f,
                         color = Color(0xFFFBC901),
                         modifier = Modifier
-                            .padding(bottom = 8.dp)
                             .fillMaxWidth()
                             .height(16.dp)
                             .clip(RoundedCornerShape(16.dp))
