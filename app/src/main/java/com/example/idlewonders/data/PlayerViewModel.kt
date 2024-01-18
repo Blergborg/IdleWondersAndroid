@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 class PlayerViewModel: ViewModel() {
 //    var adRewards
@@ -61,6 +62,12 @@ class PlayerViewModel: ViewModel() {
 
     private val _tapPower = MutableStateFlow(DEFAULT_TAP_POWER)
     val tapPower: StateFlow<WorkAmount> = _tapPower
+
+    fun moneyAmountForLabor(labor: WorkAmount): Money {
+        val earnedMoney = (labor * LABOR_PERCENTAGE_AS_MONEY).setScale(2, RoundingMode.CEILING)
+        println("earned money $earnedMoney for labor $labor")
+        return earnedMoney
+    }
 //    var manaPerMillisecond
 //    var workPerMillisecond
 //    var researchPerMillisecond
@@ -92,10 +99,10 @@ class PlayerViewModel: ViewModel() {
 //    var hasSeenEmployeeTut
 
     companion object {
-        val DEFAULT_TAP_POWER = WorkAmount("10.00") // this probably needs to be a bigint or bigdecimal later
+        val DEFAULT_TAP_POWER = WorkAmount("10.00")
         // TODO: Maybe use DataStore for player data instead?
         val FILENAME = "playerData"
         val DEFAULT_MUSIC_VOLUME = 1.0f
-        val LABOR_MONEY_PERCENTAGE = 10
+        val LABOR_PERCENTAGE_AS_MONEY = BigDecimal("0.10")
     }
 }

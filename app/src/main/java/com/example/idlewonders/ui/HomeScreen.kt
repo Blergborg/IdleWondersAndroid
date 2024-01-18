@@ -91,9 +91,10 @@ fun HomeScreen(viewModel: PlayerViewModel) {
                     .fillMaxWidth()
                     .weight(1f)
                     .clickable {
-                        viewModel.incrementMoney(Money(1))
-                        viewModel.incrementMana(Mana(1))
+                        viewModel.incrementMana(Mana(2))
                         playerCurrentWonder.applyWork(playerTapPower)
+                        //TODO: clean this up, looks gross, you can do better.
+                        viewModel.incrementMoney(viewModel.moneyAmountForLabor(playerTapPower))
                     }
             )
             Row(
