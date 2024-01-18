@@ -4,7 +4,6 @@ import android.media.Image
 import com.example.idlewonders.data.EmployeeId
 import com.example.idlewonders.data.Money
 import com.example.idlewonders.data.WorkAmount
-import java.math.BigDecimal
 
 class Employee(
     override var baseCost: Money,

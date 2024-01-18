@@ -36,6 +36,8 @@ import com.example.idlewonders.data.PlayerViewModel
 fun HomeScreen(viewModel: PlayerViewModel) {
     val playerMoney by viewModel.money.collectAsState()
     val playerMana by viewModel.mana.collectAsState()
+    val playerCurrentWonder by viewModel.currentWonder.collectAsState()
+    val playerTapPower by viewModel.tapPower.collectAsState()
 
     Box(modifier = Modifier.padding(8.dp)) {
         Column {
@@ -68,7 +70,7 @@ fun HomeScreen(viewModel: PlayerViewModel) {
                     modifier = Modifier.padding(bottom = 8.dp)
                 ) {
                     LinearProgressIndicator(
-                        progress = playerMoney.toFloat()/100f,
+                        progress = playerCurrentWonder.percentComplete.toFloat(),
                         color = Color(0xFFFBC901),
                         modifier = Modifier
                             .fillMaxWidth()
@@ -76,12 +78,12 @@ fun HomeScreen(viewModel: PlayerViewModel) {
                             .clip(RoundedCornerShape(16.dp))
                     )
                     Text(
-                        text = "$playerMoney / X.XX",
+                        text = "${playerCurrentWonder.workDone} / ${playerCurrentWonder.workNeeded}",
                         modifier = Modifier.zIndex(1f)
                         )
                 }
 
-                Text(text = "Level X")
+                Text(text = "Level ${playerCurrentWonder.level}")
             }
 
             Box(
@@ -91,6 +93,7 @@ fun HomeScreen(viewModel: PlayerViewModel) {
                     .clickable {
                         viewModel.incrementMoney(Money(1))
                         viewModel.incrementMana(Mana(1))
+                        playerCurrentWonder.applyWork(playerTapPower)
                     }
             )
             Row(

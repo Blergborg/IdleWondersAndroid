@@ -13,7 +13,9 @@ import java.math.BigDecimal
 
 class PlayerViewModel: ViewModel() {
 //    var adRewards
-//    var wonder: WonderType
+    private val _currentWonder = MutableStateFlow(Wonder())
+    val currentWonder: StateFlow<Wonder> = _currentWonder.asStateFlow()
+
 
     // Current values for cash and mana
     // TODO: synchronized() locks for spells/etc later
@@ -57,13 +59,14 @@ class PlayerViewModel: ViewModel() {
     }
      **/
 
-//    var tapPower
+    private val _tapPower = MutableStateFlow(DEFAULT_TAP_POWER)
+    val tapPower: StateFlow<WorkAmount> = _tapPower
 //    var manaPerMillisecond
 //    var workPerMillisecond
 //    var researchPerMillisecond
 
 //    var lastTick
-//    var level
+//    var difficultyLevel: Int  // the current level for the player, used to generate wonders
 
 //    var currentResearchSpell: Spell?
 
@@ -89,7 +92,7 @@ class PlayerViewModel: ViewModel() {
 //    var hasSeenEmployeeTut
 
     companion object {
-        val DEFAULT_TAP_POWER = 10 // this probably needs to be a bigint or bigdecimal later
+        val DEFAULT_TAP_POWER = WorkAmount("10.00") // this probably needs to be a bigint or bigdecimal later
         // TODO: Maybe use DataStore for player data instead?
         val FILENAME = "playerData"
         val DEFAULT_MUSIC_VOLUME = 1.0f
