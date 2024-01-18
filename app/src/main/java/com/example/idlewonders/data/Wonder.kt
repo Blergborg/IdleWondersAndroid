@@ -1,12 +1,16 @@
 package com.example.idlewonders.data
 
+import java.math.BigDecimal
+import java.math.RoundingMode
+
 class Wonder (
     var level: Int = 1,
     var type: WonderType = WonderType.PYRAMID,
     val difficulty: Int = 0,
-    var workNeeded: WorkAmount = workValues[difficulty],
+    var workNeeded: WorkAmount = workValueForWonderLevel(1, 0),
     var workDone: WorkAmount = WorkAmount("0.00")
 ){
+
     var innovationsForWonder: Int = 5
         get() = 5 + (difficulty * 3)
 
@@ -16,6 +20,9 @@ class Wonder (
     var remainingWork: WorkAmount = workNeeded
         get() = workNeeded - workDone
 
+    var isLevelComplete: Boolean = false
+        get() = (workDone >= workNeeded)
+
     fun newWonder(type: WonderType, difficulty: Int): Wonder {
         return Wonder(type = type, difficulty = difficulty)
     }
@@ -24,21 +31,42 @@ class Wonder (
         println("Adding work: $workAmount")
         workDone += workAmount
         println("Total work amount: $workDone/$workNeeded")
+
+        // TODO: this should probably go somewhere else.
+        if (workDone >= workNeeded) {
+            incrementLevel()
+        }
     }
 
     fun incrementLevel() {
         println("Incrementing wonder level")
         level += 1
         workDone = WorkAmount("0.00")
-        workNeeded = workValues[level]
+        workNeeded = workValueForWonderLevel(level, difficulty)
     }
 
-    fun workValueForWonderLevel() {
-        /** Need to read over this part again... */
-    }
+
 
     companion object {
-        val workValues = listOf(
+        fun workValueForWonderLevel(level: Int, difficulty: Int): WorkAmount {
+            if (level <= 0 || level > 1000) {
+                println("Whoops, an invalid level value was used: $level, returning the max level 1000")
+                return workValueForWonderLevel(1000, difficulty)
+            }
+            var laborAmount = workValues[level -1]
+            var difficultyModifier = WorkAmount(difficulty * DIFFICULTY_PERCENT_BOOST) / BigDecimal("100.00")
+
+            if (difficultyModifier > WorkAmount(0)) {
+                var difficultyBonus = (laborAmount * difficultyModifier)
+                laborAmount += difficultyBonus
+            }
+            println("workValueForWonderLevel: $level difficulty: $difficulty = ($laborAmount * $difficultyModifier / 100)")
+            return laborAmount.setScale(2, RoundingMode.CEILING)
+        }
+
+        private const val DIFFICULTY_PERCENT_BOOST = 2
+
+        private val workValues = listOf(
             WorkAmount("1000.00"),
             WorkAmount("1116.00"),
             WorkAmount("1212.00"),
