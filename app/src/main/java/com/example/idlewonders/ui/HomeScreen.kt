@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.idlewonders.data.Mana
 import com.example.idlewonders.data.PlayerViewModel
+import com.example.idlewonders.ui.components.DebugControls
 import com.example.idlewonders.ui.components.ProgressBar
 
 // TODO: Break out some of these widget sections into reusable components.
@@ -79,6 +80,8 @@ fun HomeScreen(viewModel: PlayerViewModel) {
                         viewModel.incrementMoney(viewModel.moneyAmountForLabor(playerTapPower))
                     }
             )
+            // TODO: DebugControls Z-positioning and accessing PlayerViewModel.
+//            DebugControls()
             Row(
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.SpaceBetween,
