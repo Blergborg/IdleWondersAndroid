@@ -13,10 +13,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.idlewonders.data.PlayerViewModel
 
 @Composable
-fun DebugControls() {
-    ElevatedCard() {
+fun DebugControls(viewModel: PlayerViewModel) {
+    ElevatedCard {
         Column(
             modifier = Modifier
                 .padding(4.dp),
@@ -25,29 +26,50 @@ fun DebugControls() {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Button(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
+                Button(
+                    modifier = Modifier.weight(1f),
+                    onClick = { /*TODO*/ }
+                ) {
                     Text("Set Mana", textAlign = TextAlign.Center)
                 }
-                Button(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
+                Button(
+                    modifier = Modifier.weight(1f),
+                    onClick = { /*TODO*/ }) {
                     Text("Set Money", textAlign = TextAlign.Center, fontSize = 12.sp)
                 }
-                Button(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
+                Button(
+                    modifier = Modifier.weight(1f),
+                    onClick = {
+                        viewModel.debugLvlUp()
+                    }) {
                     Text("Finish Level", textAlign = TextAlign.Center)
                 }
-                Button(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
+                Button(
+                    modifier = Modifier.weight(1f),
+                    onClick = { /*TODO*/ }
+                ) {
                     Text("Win", textAlign = TextAlign.Center)
                 }
             }
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Button(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
+                Button(
+                    modifier = Modifier.weight(1f),
+                    onClick = { viewModel.debugLvlUp(-100) }
+                ) {
                     Text("Lvl -100", textAlign = TextAlign.Center)
                 }
-                Button(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
+                Button(
+                    modifier = Modifier.weight(1f),
+                    onClick = { viewModel.debugLvlUp(100) }
+                ) {
                     Text("Lvl +100", textAlign = TextAlign.Center)
                 }
-                Button(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
+                Button(
+                    modifier = Modifier.weight(1f),
+                    onClick = { /*TODO*/ }
+                ) {
                     Text("Innovation +5", textAlign = TextAlign.Center, fontSize = 12.sp)
                 }
 
@@ -72,8 +94,9 @@ fun DebugControls() {
     }
 }
 
-@Preview
-@Composable
-fun DebugControlsPreview() {
-    DebugControls()
-}
+//@Preview
+//@Composable
+//fun DebugControlsPreview() {
+//    val dummyWonder = Wonder()
+//    DebugControls(dummyWonder)
+//}

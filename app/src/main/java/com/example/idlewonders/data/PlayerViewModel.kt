@@ -2,6 +2,9 @@ package com.example.idlewonders.data
 
 // Trying to use the player as the sharedViewModel of the game
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -16,6 +19,17 @@ class PlayerViewModel: ViewModel() {
 //    var adRewards
     private val _currentWonder = MutableStateFlow(Wonder())
     val currentWonder: StateFlow<Wonder> = _currentWonder.asStateFlow()
+
+    var debug by mutableStateOf(true)
+        private set
+    fun toggleDebug() {
+        debug = !debug
+    }
+    fun debugLvlUp(levels: Int = 1) {
+        _currentWonder.value.incrementLevel(levels)
+        incrementMoney(Money(99))
+        incrementMana(Mana(99))
+    }
 
 
     // Current values for cash and mana

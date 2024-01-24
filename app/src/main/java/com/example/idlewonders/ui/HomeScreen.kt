@@ -42,7 +42,12 @@ fun HomeScreen(viewModel: PlayerViewModel) {
             ) {
                 Spacer(modifier = Modifier)
 
-                Button(onClick = { println("Settings Button clicked") }) {
+                Button(
+                    onClick = {
+                        println("Settings Button clicked")
+                        viewModel.toggleDebug()
+                    }
+                ) {
                     Image(imageVector = Icons.Filled.Settings, contentDescription = "Settings")
                 }
             }
@@ -81,7 +86,9 @@ fun HomeScreen(viewModel: PlayerViewModel) {
                     }
             )
             // TODO: DebugControls Z-positioning and accessing PlayerViewModel.
-//            DebugControls()
+            if (viewModel.debug) {
+                DebugControls(viewModel)
+            }
             Row(
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.SpaceBetween,

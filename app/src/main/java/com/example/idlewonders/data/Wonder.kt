@@ -38,9 +38,22 @@ class Wonder (
         }
     }
 
-    fun incrementLevel() {
-        println("Incrementing wonder level")
-        level += 1
+    fun incrementLevel(levels: Int = 1) {
+        var incrementValue = levels
+
+        if (levels < 0 && (level + levels) <= 0) {
+            incrementValue = 1 - level
+        }
+        else if (levels > (1000 - level)) {
+            incrementValue = 1000 - level
+        }
+
+        if (incrementValue == 0) {
+            println("Trying to change by 0 levels, No point.")
+            return
+        }
+        println("Incrementing wonder level by $levels")
+        level += incrementValue
         workDone = WorkAmount("0.00")
         workNeeded = workValueForWonderLevel(level, difficulty)
     }
