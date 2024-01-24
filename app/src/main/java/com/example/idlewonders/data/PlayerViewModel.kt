@@ -53,9 +53,10 @@ class PlayerViewModel: ViewModel() {
     private val _innovationPoints = MutableStateFlow(0)
     val innovationPoints: StateFlow<InnovationPoints> = _innovationPoints
 
-    fun incrementInnovationPoints(newPoints: InnovationPoints) {
+    fun incrementInnovationPoints(newPoints: InnovationPoints = 1) {
         if (newPoints > 0) {
             _innovationPoints.value += newPoints
+            println("Added $newPoints Innovation Points\nNew total: ${_innovationPoints.value}")
         }
         else {
             println("invalid input: $newPoints")
@@ -70,6 +71,7 @@ class PlayerViewModel: ViewModel() {
         }
         else {
             _innovationPoints.value -= pointCost
+            println("Spent $pointCost Innovation Points\n New total: ${_innovationPoints.value}")
         }
     }
 

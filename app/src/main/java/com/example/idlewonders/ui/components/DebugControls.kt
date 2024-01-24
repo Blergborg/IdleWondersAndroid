@@ -68,7 +68,7 @@ fun DebugControls(viewModel: PlayerViewModel) {
                 }
                 Button(
                     modifier = Modifier.weight(1f),
-                    onClick = { /*TODO*/ }
+                    onClick = { viewModel.incrementInnovationPoints(5) }
                 ) {
                     Text("Innovation +5", textAlign = TextAlign.Center, fontSize = 12.sp)
                 }
