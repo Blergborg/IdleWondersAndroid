@@ -75,6 +75,7 @@ fun HomeScreen(viewModel: PlayerViewModel) {
             }
 
             Box(
+                contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
@@ -84,11 +85,12 @@ fun HomeScreen(viewModel: PlayerViewModel) {
                         //TODO: clean this up, looks gross, you can do better.
                         viewModel.incrementMoney(viewModel.moneyAmountForLabor(playerTapPower))
                     }
-            )
-            // TODO: DebugControls Z-positioning and accessing PlayerViewModel.
-            if (viewModel.debug) {
-                DebugControls(viewModel)
+            ) {
+                if (viewModel.debug) {
+                    DebugControls(viewModel)
+                }
             }
+
             Row(
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.SpaceBetween,
