@@ -20,7 +20,7 @@ class PlayerViewModel: ViewModel() {
     private val _currentWonder = MutableStateFlow(Wonder())
     val currentWonder: StateFlow<Wonder> = _currentWonder.asStateFlow()
 
-    var debug by mutableStateOf(true)
+    var debug by mutableStateOf(false)
         private set
     fun toggleDebug() {
         debug = !debug
@@ -29,6 +29,13 @@ class PlayerViewModel: ViewModel() {
         _currentWonder.value.incrementLevel(levels)
         incrementMoney(Money(99))
         incrementMana(Mana(99))
+    }
+
+    fun debugWin() {
+        val levelsUntilWin = 1000 - _currentWonder.value.level
+        _currentWonder.value.incrementLevel(levelsUntilWin)
+        incrementMoney(Money(levelsUntilWin))
+        incrementMana(Mana(levelsUntilWin))
     }
 
 

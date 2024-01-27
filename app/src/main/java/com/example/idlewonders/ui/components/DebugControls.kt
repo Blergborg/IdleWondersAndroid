@@ -46,7 +46,7 @@ fun DebugControls(viewModel: PlayerViewModel) {
                 }
                 Button(
                     modifier = Modifier.weight(1f),
-                    onClick = { /*TODO*/ }
+                    onClick = { viewModel.debugWin() }
                 ) {
                     Text("Win", textAlign = TextAlign.Center)
                 }
