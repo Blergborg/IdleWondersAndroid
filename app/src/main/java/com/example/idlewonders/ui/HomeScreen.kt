@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.idlewonders.data.Mana
 import com.example.idlewonders.data.PlayerViewModel
+import com.example.idlewonders.ui.components.BuildingScene
 import com.example.idlewonders.ui.components.DebugControls
 import com.example.idlewonders.ui.components.ProgressBar
 
@@ -35,6 +36,7 @@ fun HomeScreen(viewModel: PlayerViewModel) {
     val playerTapPower by viewModel.tapPower.collectAsState()
 
     Box(modifier = Modifier.padding(8.dp)) {
+//        BuildingScene()
         Column {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
