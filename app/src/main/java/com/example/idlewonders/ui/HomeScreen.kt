@@ -35,8 +35,8 @@ fun HomeScreen(viewModel: PlayerViewModel) {
     val playerCurrentWonder by viewModel.currentWonder.collectAsState()
     val playerTapPower by viewModel.tapPower.collectAsState()
 
-    Box(modifier = Modifier.padding(8.dp)) {
-//        BuildingScene()
+    Box() {
+        BuildingScene()
         Column {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,

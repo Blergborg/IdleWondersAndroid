@@ -34,12 +34,12 @@ fun BuildingScene(modifier: Modifier = Modifier) {
 //            contentScale = ContentScale.FillBounds,
             modifier = modifier
                 .fillMaxSize()
-                .offset(y= (0).dp)
+                .offset(y= (400).dp)
         )
         // TODO: alien animation here?
-        AlienAnimation(
-            modifier = modifier.offset(y=70.dp)
-        )
+//        AlienAnimation(
+//            modifier = modifier.offset(y=70.dp)
+//        )
         // TODO: building clouds animation here?
         Image(
             painter = painterResource(id = R.drawable.building_screen_foreground),
