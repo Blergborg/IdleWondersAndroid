@@ -16,7 +16,7 @@ import com.example.idlewonders.R
 @Composable
 fun BuildingScene(modifier: Modifier = Modifier, level: Int) {
 
-    val pyramidLocation = 400 - ((level/5) * 2)
+    val pyramidLocation = 480 - ((level/5) * 2)
 
     Box(modifier = modifier
         .fillMaxSize()
@@ -29,7 +29,6 @@ fun BuildingScene(modifier: Modifier = Modifier, level: Int) {
         Image(
             painter = painterResource(id = R.drawable.pyramid_texture),
             contentDescription = "wonder",
-//            contentScale = ContentScale.FillBounds,
             modifier = modifier
                 .fillMaxSize()
                 .offset(y = (pyramidLocation).dp)
@@ -42,8 +41,8 @@ fun BuildingScene(modifier: Modifier = Modifier, level: Int) {
         Image(
             painter = painterResource(id = R.drawable.building_screen_foreground),
             contentDescription = "foreground",
-//            contentScale = ContentScale.FillBounds,
             modifier = modifier.fillMaxSize()
+                .offset(y= 80.dp)
         )
     }
 
