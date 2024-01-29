@@ -14,7 +14,10 @@ import androidx.compose.ui.unit.dp
 import com.example.idlewonders.R
 
 @Composable
-fun BuildingScene(modifier: Modifier = Modifier) {
+fun BuildingScene(modifier: Modifier = Modifier, level: Int) {
+
+    val pyramidLocation = 400 - ((level/5) * 2)
+
     Box(modifier = modifier
         .fillMaxSize()
         .paint(
@@ -22,11 +25,6 @@ fun BuildingScene(modifier: Modifier = Modifier) {
             contentScale = ContentScale.FillBounds
         )
     ) {
-//        Image(
-//            painter = painterResource(id = R.drawable.building_screen_background),
-//            contentDescription = "background",
-//            modifier = modifier.fillMaxHeight()
-//        )
         // TODO: animated skybox here?
         Image(
             painter = painterResource(id = R.drawable.pyramid_texture),
@@ -34,7 +32,7 @@ fun BuildingScene(modifier: Modifier = Modifier) {
 //            contentScale = ContentScale.FillBounds,
             modifier = modifier
                 .fillMaxSize()
-                .offset(y= (400).dp)
+                .offset(y = (pyramidLocation).dp)
         )
         // TODO: alien animation here?
 //        AlienAnimation(
@@ -48,10 +46,12 @@ fun BuildingScene(modifier: Modifier = Modifier) {
             modifier = modifier.fillMaxSize()
         )
     }
+
+
 }
 
 @Preview
 @Composable
 fun BuildingScenePreview() {
-    BuildingScene()
+    BuildingScene(level = 1)
 }
