@@ -11,20 +11,23 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.idlewonders.R
 import com.example.idlewonders.data.Mana
 import com.example.idlewonders.data.PlayerViewModel
 import com.example.idlewonders.ui.components.BuildingScene
 import com.example.idlewonders.ui.components.DebugControls
+import com.example.idlewonders.ui.components.NavigationButton
 import com.example.idlewonders.ui.components.ProgressBar
 
 // TODO: Break out some of these widget sections into reusable components.
@@ -38,33 +41,49 @@ fun HomeScreen(viewModel: PlayerViewModel) {
     Box() {
         BuildingScene(level = playerCurrentWonder.level)
         Column {
+            Box(modifier = Modifier.padding(top = 48.dp)) {
+
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Spacer(modifier = Modifier)
 
-                Button(
-                    onClick = {
-                        println("Settings Button clicked")
-                        viewModel.toggleDebug()
-                    }
-                ) {
-                    Image(imageVector = Icons.Filled.Settings, contentDescription = "Settings")
-                }
+                Image(
+                    painter = painterResource(id = R.drawable.settings_block),
+                    contentDescription = "Settings Button",
+                    modifier = Modifier
+                        .clickable {
+                            println("Settings Button clicked")
+                            viewModel.toggleDebug()
+                        }
+                        .size(52.dp)
+                )
+
             }
+
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Column(
                     horizontalAlignment = Alignment.End,
                     modifier = Modifier.padding(bottom = 8.dp)
                 ) {
-                    Row {
-                        Text(text = "Money $playerMoney")
-                        Text(text = "💰", modifier = Modifier.padding(start = 8.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(text = "Money $playerMoney", fontSize = 20.sp)
+                        Image(
+                            painter = painterResource(id = R.drawable.coin_symbol),
+                            contentDescription = "Coin Symbol",
+                            modifier = Modifier
+                                .padding(start = 8.dp)
+                                .size(28.dp)
+                        )
                     }
                     Row {
                         Text(text = "Mana $playerMana")
-                        Text(text = "🪄", modifier = Modifier.padding(start = 8.dp))
+                        Image(
+                            painter = painterResource(id = R.drawable.mana_symbol),
+                            contentDescription = "Mana Symbol",
+                            modifier = Modifier.padding(start = 18.dp)
+                        )
                     }
                 }
                 ProgressBar(
@@ -75,7 +94,7 @@ fun HomeScreen(viewModel: PlayerViewModel) {
 
                 Text(text = "Level ${playerCurrentWonder.level}")
             }
-
+            }
             Box(
                 contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier
@@ -96,20 +115,23 @@ fun HomeScreen(viewModel: PlayerViewModel) {
             Row(
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 8.dp, end = 8.dp, bottom = 12.dp)
                 ) {
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Employees")
-                }
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Spells")
-                }
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Innovations")
-                }
+
+                NavigationButton(text = "Employees", onClick = { println("Employees") })
+                NavigationButton(text = "Spells", onClick = { println("Spells") })
+                NavigationButton(text = "Innovations", onClick = { println("Innovations") })
             }
         }
     }
 }
 
 // TODO: add Preview
+@Preview
+@Composable
+fun PreviewHomeScreen() {
+    val dummyViewModel = PlayerViewModel()
+    HomeScreen(viewModel = dummyViewModel)
+}
