@@ -27,7 +27,7 @@ fun NavigationButton(modifier: Modifier = Modifier, text: String, onClick: () ->
                 alignment = Alignment.Center,
                 contentScale = ContentScale.FillBounds
             )
-            .requiredSize(width = 100.dp, height = 40.dp)
+            .requiredSize(width = 120.dp, height = 40.dp)
             .padding(4.dp)
             .clickable { onClick() }
 

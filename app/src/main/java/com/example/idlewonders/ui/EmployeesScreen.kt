@@ -9,9 +9,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.idlewonders.R
+import com.example.idlewonders.ui.components.BackButton
 
 @Composable
-fun EmployeesScreen(modifier: Modifier = Modifier) {
+fun EmployeesScreen(
+    modifier: Modifier = Modifier,
+    backNav: () -> Unit
+) {
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -20,11 +24,11 @@ fun EmployeesScreen(modifier: Modifier = Modifier) {
                 contentScale = ContentScale.FillBounds
             )
     ) {
-
+        BackButton(backNav = backNav)
     }
 }
 @Preview
 @Composable
 fun PreviewEmployeesScreen() {
-    EmployeesScreen()
+    EmployeesScreen(backNav = {})
 }

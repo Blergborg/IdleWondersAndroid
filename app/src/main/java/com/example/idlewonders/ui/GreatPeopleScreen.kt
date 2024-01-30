@@ -9,23 +9,27 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.idlewonders.R
+import com.example.idlewonders.ui.components.BackButton
 
 @Composable
-fun GreatPeopleScreen(modifier: Modifier = Modifier) {
+fun GreatPeopleScreen(
+    modifier: Modifier = Modifier,
+    backNav: () -> Unit
+) {
     Box(
         modifier = modifier
             .fillMaxSize()
             .paint(
-                painterResource(id = R.drawable.tile_back),
+                painterResource(id = R.drawable.innovations_back),
                 contentScale = ContentScale.FillBounds
             )
     ) {
-
+        BackButton(backNav = backNav)
     }
 }
 
 @Preview
 @Composable
 fun PreviewGreatPeopleScreen() {
-    GreatPeopleScreen()
+    GreatPeopleScreen(backNav = {})
 }

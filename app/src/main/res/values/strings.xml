@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Idle Wonders</string>
+    <string name="home_screen">Build</string>
+    <string name="employee_screen">Employees</string>
+    <string name="spell_screen">Spells</string>
+    <string name="great_people_screen">Great People</string>
 </resources>

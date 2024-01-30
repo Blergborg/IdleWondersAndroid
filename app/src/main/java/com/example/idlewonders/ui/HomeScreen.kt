@@ -32,7 +32,12 @@ import com.example.idlewonders.ui.components.ProgressBar
 
 // TODO: Break out some of these widget sections into reusable components.
 @Composable
-fun HomeScreen(viewModel: PlayerViewModel) {
+fun HomeScreen(
+    viewModel: PlayerViewModel,
+    employeeNav: () -> Unit,
+    spellNav: () -> Unit,
+    greatPeopleNav: () -> Unit
+) {
     val playerMoney by viewModel.money.collectAsState()
     val playerMana by viewModel.mana.collectAsState()
     val playerCurrentWonder by viewModel.currentWonder.collectAsState()
@@ -120,18 +125,22 @@ fun HomeScreen(viewModel: PlayerViewModel) {
                     .padding(start = 8.dp, end = 8.dp, bottom = 12.dp)
                 ) {
 
-                NavigationButton(text = "Employees", onClick = { println("Employees") })
-                NavigationButton(text = "Spells", onClick = { println("Spells") })
-                NavigationButton(text = "Innovations", onClick = { println("Innovations") })
+                NavigationButton(text = "Employees", onClick = employeeNav)//{ println("Employees") })
+                NavigationButton(text = "Spells", onClick = spellNav)//{ println("Spells") })
+                NavigationButton(text = "Innovations", onClick = greatPeopleNav)//{ println("Innovations") })
             }
         }
     }
 }
 
-// TODO: add Preview
 @Preview
 @Composable
 fun PreviewHomeScreen() {
     val dummyViewModel = PlayerViewModel()
-    HomeScreen(viewModel = dummyViewModel)
+    HomeScreen(
+        viewModel = dummyViewModel,
+        employeeNav = {},
+        spellNav = {},
+        greatPeopleNav = {}
+    )
 }
