@@ -35,25 +35,25 @@ fun DebugControls(viewModel: PlayerViewModel) {
                     modifier = Modifier.weight(1f),
                     onClick = { /*TODO*/ }
                 ) {
-                    Text("Set Mana", textAlign = TextAlign.Center)
+                    Text("Set Mana", textAlign = TextAlign.Center, color = Color.Cyan)
                 }
                 TextButton(
                     modifier = Modifier.weight(1f),
                     onClick = { /*TODO*/ }) {
-                    Text("Set Money", textAlign = TextAlign.Center, fontSize = 12.sp)
+                    Text("Set Money", textAlign = TextAlign.Center, fontSize = 12.sp, color = Color.Cyan)
                 }
                 TextButton(
                     modifier = Modifier.weight(1f),
                     onClick = {
                         viewModel.debugLvlUp()
                     }) {
-                    Text("Finish Level", textAlign = TextAlign.Center)
+                    Text("Finish Level", textAlign = TextAlign.Center, color = Color.Cyan)
                 }
                 TextButton(
                     modifier = Modifier.weight(1f),
                     onClick = { viewModel.debugWin() }
                 ) {
-                    Text("Win", textAlign = TextAlign.Center)
+                    Text("Win", textAlign = TextAlign.Center, color = Color.Cyan)
                 }
             }
             Row(
@@ -63,19 +63,19 @@ fun DebugControls(viewModel: PlayerViewModel) {
                     modifier = Modifier.weight(1f),
                     onClick = { viewModel.debugLvlUp(-100) }
                 ) {
-                    Text("Lvl -100", textAlign = TextAlign.Center)
+                    Text("Lvl -100", textAlign = TextAlign.Center, color = Color.Cyan)
                 }
                 TextButton(
                     modifier = Modifier.weight(1f),
                     onClick = { viewModel.debugLvlUp(100) }
                 ) {
-                    Text("Lvl +100", textAlign = TextAlign.Center)
+                    Text("Lvl +100", textAlign = TextAlign.Center, color = Color.Cyan)
                 }
                 TextButton(
                     modifier = Modifier.weight(1f),
                     onClick = { viewModel.incrementInnovationPoints(5) }
                 ) {
-                    Text("Innovation +5", textAlign = TextAlign.Center, fontSize = 12.sp)
+                    Text("Innovation +5", textAlign = TextAlign.Center, fontSize = 12.sp, color = Color.Cyan)
                 }
 
             }
@@ -83,16 +83,16 @@ fun DebugControls(viewModel: PlayerViewModel) {
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 TextButton(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
-                    Text("Test Tutorial", textAlign = TextAlign.Center, fontSize = 10.sp)
+                    Text("Test Tutorial", textAlign = TextAlign.Center, fontSize = 10.sp, color = Color.Cyan)
                 }
                 TextButton(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
-                    Text("Test changelog", textAlign = TextAlign.Center, fontSize = 8.sp)
+                    Text("Test changelog", textAlign = TextAlign.Center, fontSize = 8.sp, color = Color.Cyan)
                 }
                 TextButton(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
-                    Text("Reset Ad Time", textAlign = TextAlign.Center, fontSize = 8.sp)
+                    Text("Reset Ad Time", textAlign = TextAlign.Center, fontSize = 8.sp, color = Color.Cyan)
                 }
                 TextButton(modifier = Modifier.weight(1f), onClick = { /*TODO*/ }) {
-                    Text("15 Minutes", textAlign = TextAlign.Center, fontSize = 10.sp)
+                    Text("15 Minutes", textAlign = TextAlign.Center, fontSize = 10.sp, color = Color.Cyan)
                 }
             }
         }
