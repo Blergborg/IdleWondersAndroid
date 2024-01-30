@@ -41,7 +41,7 @@ fun HomeScreen(viewModel: PlayerViewModel) {
     Box() {
         BuildingScene(level = playerCurrentWonder.level)
         Column {
-            Box(modifier = Modifier.padding(top = 48.dp)) {
+            Box(modifier = Modifier.padding(top = 48.dp, start = 8.dp, end = 8.dp)) {
 
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
