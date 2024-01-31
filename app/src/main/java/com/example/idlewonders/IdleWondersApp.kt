@@ -41,11 +41,9 @@ fun IdleWondersApp(
         startDestination = IdleScreen.Build.name,
         modifier = Modifier
     ) {
+        // Home/Build Screen
         composable(
             route = IdleScreen.Build.name,
-//            enterTransition = {
-//                slideIntoContainer()
-//            },
             exitTransition = {
                 ExitTransition.KeepUntilTransitionsFinished
             }
@@ -57,18 +55,19 @@ fun IdleWondersApp(
                 greatPeopleNav = { navController.navigate(IdleScreen.GreatPeople.name) }
             )
         }
+        // Employees Screen
         composable(
             route = IdleScreen.Employees.name,
             enterTransition = {
                 slideIntoContainer(
                     animationSpec = tween(300, easing = EaseIn),
-                    towards = AnimatedContentTransitionScope.SlideDirection.End
+                    towards = AnimatedContentTransitionScope.SlideDirection.Start
                 )
             },
             exitTransition = {
                 slideOutOfContainer(
                     animationSpec = tween(300, easing = EaseOut),
-                    towards = AnimatedContentTransitionScope.SlideDirection.Start
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
                 )
             }
         ) {
@@ -76,6 +75,7 @@ fun IdleWondersApp(
                 backNav = { navigateToHome(navController) }
             )
         }
+        // Spells Screen
         composable(
             route = IdleScreen.Spells.name,
             enterTransition = {
@@ -95,6 +95,8 @@ fun IdleWondersApp(
                 backNav = { navigateToHome(navController) }
             )
         }
+
+        // GreatPeople Screen
         composable(
             route = IdleScreen.GreatPeople.name,
             enterTransition = {
