@@ -1,8 +1,12 @@
 package com.example.idlewonders
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.EaseIn
+import androidx.compose.animation.core.EaseOut
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.idlewonders.data.PlayerViewModel
@@ -32,12 +36,20 @@ fun IdleWondersApp(
 
     NavHost(
         navController = navController,
-//        enterTransition = { EnterTransition.None },
-//        exitTransition = { ExitTransition.None },
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None },
         startDestination = IdleScreen.Build.name,
         modifier = Modifier
     ) {
-        composable(route = IdleScreen.Build.name) {
+        composable(
+            route = IdleScreen.Build.name,
+//            enterTransition = {
+//                slideIntoContainer()
+//            },
+            exitTransition = {
+                ExitTransition.KeepUntilTransitionsFinished
+            }
+        ) {
             HomeScreen(
                 viewModel = viewModel,
                 employeeNav = { navController.navigate(IdleScreen.Employees.name) },
@@ -45,17 +57,59 @@ fun IdleWondersApp(
                 greatPeopleNav = { navController.navigate(IdleScreen.GreatPeople.name) }
             )
         }
-        composable(route = IdleScreen.Employees.name) {
+        composable(
+            route = IdleScreen.Employees.name,
+            enterTransition = {
+                slideIntoContainer(
+                    animationSpec = tween(300, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.End
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    animationSpec = tween(300, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Start
+                )
+            }
+        ) {
             EmployeesScreen(
                 backNav = { navigateToHome(navController) }
             )
         }
-        composable(route = IdleScreen.Spells.name) {
+        composable(
+            route = IdleScreen.Spells.name,
+            enterTransition = {
+                slideIntoContainer(
+                    animationSpec = tween(300, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Down
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    animationSpec = tween(300, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Up
+                )
+            }
+        ) {
             SpellsScreen(
                 backNav = { navigateToHome(navController) }
             )
         }
-        composable(route = IdleScreen.GreatPeople.name) {
+        composable(
+            route = IdleScreen.GreatPeople.name,
+            enterTransition = {
+                slideIntoContainer(
+                    animationSpec = tween(300, easing = EaseIn),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Up
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    animationSpec = tween(300, easing = EaseOut),
+                    towards = AnimatedContentTransitionScope.SlideDirection.Down
+                )
+            }
+        ) {
             GreatPeopleScreen(
                 backNav = { navigateToHome(navController) }
             )
