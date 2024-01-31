@@ -63,7 +63,7 @@ fun EmployeeListTile(employee: Employee, modifier: Modifier = Modifier) {
                     .weight(1F)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "${employee.baseCost}", fontSize = 18.sp)
+                    Text(text = "${employee.baseCost}", fontSize = 16.sp)
                     Image(
                         painter = painterResource(id = R.drawable.coin_symbol),
                         contentDescription = "coin symbol",
@@ -72,7 +72,7 @@ fun EmployeeListTile(employee: Employee, modifier: Modifier = Modifier) {
                             .size(24.dp)
                     )
                 }
-                Text(text = statText)
+                Text(text = statText, fontSize = 12.sp)
             }
         }
     }
